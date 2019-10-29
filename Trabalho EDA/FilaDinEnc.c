@@ -18,7 +18,7 @@ struct fila{
 
 
 // CRIA FILA
-Fila *cira_fila(){
+Fila *cria_fila(){
     Fila *fi = (Fila*) malloc (sizeof(struct fila));
 
     if (fi != NULL){

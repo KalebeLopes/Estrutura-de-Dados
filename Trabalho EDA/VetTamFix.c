@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "FilaEstatica.h"   // INCLUI OS PROTÓTIPOS
+#include "VetTamFix.h"   // INCLUI OS PROTÓTIPOS
 
 // DEFIINCAO DO TIPO FILA
 struct fila{
@@ -73,59 +73,50 @@ int fila_vazia(Fila *fi){
         return 0;   
 }
 
-int insere_fila(Fila *fi, int valor){
+int insere_fila(Fila *fi){
+
+    int valor, i = 0;
+
     if (fi == NULL){
         printf("Fila inválida!\n");
         return 0;
     }
 
-    if (fi->qtd == MAX){
-        printf("Erro ao inserir um novo elemento, a fila já está cheia!\n");
-        return 0;
+    
+
+    printf("Digite quantos elementos você deseja inserir: \n");
+    scanf("%d", &valor);
+
+    while (i != valor){
+        if (fi->final != MAX){
+            fi->f[fi->final] = i;
+            fi->final = (fi->final + 1) ;
+            fi->qtd++;    
+        }
+        else{
+            printf("A Fila encheu!\n");
+            return 0;
+        }
+
+        i++;
     }
 
-    //scanf("Informe o valor a ser inserito: %d\n", &valor);
-
-    fi->f[fi->final] = valor;
-    fi->final = (fi->final + 1) ;
-    fi->qtd++;
     printf("Elemento inserido com sucesso!\n");
-    return valor;
-}
-
-int imprime_fila(Fila *fi){
     return 1;
 }
 
+int imprime_fila(Fila *fi){
+    int i = 0;
 
-int main(){
-
-    Fila *fi;
-    int valor, seletor = 1;
-    /*
-    printf("--------------------------------------------\n");
-    printf("1. Inserir n elementos na fila\n");
-    printf("2. Remover n elementos na fila\n");
-    printf("3. Imprimir a fila\n");
-    printf("4. Reiniciar a fila\n");
-    printf("5. Sair\n");
-    printf("--------------------------------------------\n");
-    */
-    while (seletor != 0){
-        printf("\nInforme a opcao: \n");
-        scanf("%d", &seletor);
-        
-        switch (seletor){
-            case 1 : fi = cria_fila(); break;
-            case 2 : printf("%d", insere_fila(fi, valor)); break;
-            case 3 : printf("%d", remove_fila(fi)); break;
-            case 4 : printf("%d", fila_cheia(fi)); break; 
-            case 5 : printf("%d", fila_vazia(fi)); break;
-            case 6 : printf("%d", tamanho_fila(fi)); break;
-            case 7 : printf("%d", imprime_fila(fi)); break;
-            case 0 : break;
-        }
-
+    if (fi->qtd == 0){
+        printf("A fila está vazia!\n");
+        return 0;
     }
 
+    while (fi->f[fi->inicio] <= fi->f[MAX]){
+        printf("%d ", fi->f[fi->inicio]);
+        fi->f[fi->inicio] = fi->f[fi->inicio + 1];
+    }
+    
 }
+
