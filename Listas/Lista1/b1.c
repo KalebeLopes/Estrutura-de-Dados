@@ -6,8 +6,11 @@ int main(){
 
     while (scanf("%d", &a) != EOF){
         b += 1;
+        if (b = 1){
+            return 1;
+        }
     }
-    printf("%d\n", b);
+    
 
 
 return 0;

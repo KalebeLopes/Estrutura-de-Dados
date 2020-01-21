@@ -1,25 +1,19 @@
 #include <stdio.h>
 
-// int maiorNum(int atual, int maior){
-
-//     if (atual >= maior){
-//         maior = atual;
-//     }
-
-//     return maior;
-// }
-
 int main(){
 
-    int input, maior = 0;
+    int a, b=0;
 
-    while(scanf("%d", &input) != EOF){
-        if (input >= maior){
-            maior = input;
-        }
+    while ((a = scanf("%d", &a)) != EOF){
+        printf("%d", a);
     }
 
-    printf("%d\n", maior);
+    if (b == 1){
+            return 1;
+    }
 
-    return 0;
+    
+
+
+return 0;
 }
