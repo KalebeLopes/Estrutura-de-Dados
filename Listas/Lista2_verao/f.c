@@ -22,7 +22,7 @@ int main(){
     
     media /= qtd;
     printf("%lld \n", media);
-
+    
     for (i = 0 ; i < qtd ; i++){
         if (sequencia[i] > media){
             maior[j] = sequencia[i];
