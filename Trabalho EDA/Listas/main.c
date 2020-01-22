@@ -5,6 +5,7 @@ int main(){
 
     Fila *fi;
     int seletor = 1;
+    int qtd = 1;
 
     fi = cria_fila();
 
@@ -25,8 +26,8 @@ int main(){
         scanf("%d", &seletor);
         
         switch (seletor){
-            case 1 : printf("%d", insere_fila(fi));break;
-            case 2 : printf("%d", remove_fila(fi));break;
+            case 1 : insere_fila(fi);break;
+            case 2 : remove_fila(fi);break;
             case 3 : imprime_fila(fi); break; 
             case 4 : reinicia_fila(fi); break;
             case 5 : break;

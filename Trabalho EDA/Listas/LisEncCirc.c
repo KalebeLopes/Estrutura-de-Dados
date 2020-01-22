@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "FilaDinEnc.h"     // INCLUI PROTÓTIPOS
+#include "LisEncCirc.h"     // INCLUI PROTÓTIPOS
 
 //  DEFINICAO TIPO FILA
 struct elemento{
