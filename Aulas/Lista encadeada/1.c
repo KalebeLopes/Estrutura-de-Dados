@@ -32,7 +32,7 @@ List *createList(){
 void inserir(List *list, DataNode data){
     Node *node = (Node*) malloc(sizeof(Node));
 
-    node ->data = data;
+    node->data = data;
     node->next = list->head;
     list->head = node;
     list->size++;
