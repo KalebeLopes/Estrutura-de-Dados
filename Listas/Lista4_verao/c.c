@@ -21,26 +21,6 @@ void insere_inicio (celula *le, int x){
 void insere_antes (celula *le, int x, int y){
     if (le == NULL){
         //printf("n existe\n");// int main(){
-
-//     celula *le, *a1, *a2, *a3, *aux;
-
-//     le = malloc(sizeof(celula));
-//     a1 = malloc(sizeof(celula));
-//     a2 = malloc(sizeof(celula));
-//     a3 = malloc(sizeof(celula));
-    
-//     le->prox = NULL;
-    
-//     insere_antes(le, 10, 4);
-
-//     for(aux = le->prox; aux != NULL; aux = aux->prox){ 
-//         printf("%d\n", aux->dado);
-//     }
-
-//     //printf("%d\n", le->prox->prox->dado);
-
-//     return 0;
-// }
         return;
     }
 
@@ -82,6 +62,8 @@ void insere_antes (celula *le, int x, int y){
     return;
 
 }
+
+    
 
 // int main(){
 
