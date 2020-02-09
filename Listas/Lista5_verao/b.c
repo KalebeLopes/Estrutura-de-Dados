@@ -39,7 +39,6 @@ int desempilha (pilha *p, int *y){
 
     else {
         p->topo--; 
-
         *y = p->dados[p->topo];
         //printf("val y : %d\n", *y);
     }
