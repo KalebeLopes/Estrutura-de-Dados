@@ -7,6 +7,24 @@ typedef struct celula {
     struct celula *prox;
 } celula;
 
+int empilha (celula *p, int x){
+
+    if (p == NULL)
+        return 0;
+
+    celula *novo = malloc(sizeof(celula));
+
+    if (novo == NULL)
+        return 0;
+
+    novo->prox = p->prox;
+    p->prox = novo;
+    novo->dado = x;
+
+    return 1;
+    
+}
+
 int desempilha (celula *p, int *y){
     if (p == NULL || p->prox == NULL)
         return 0;
@@ -22,37 +40,29 @@ int desempilha (celula *p, int *y){
 
 }
 
-// int main(){
+int main(){
 
-//     celula *p, *a1, *a2, *a3;
-//     int *y, x = 10;
+    celula *p, *a1, *a2, *a3;
+    int *y, x = 10;
 
-//     y = &x;
+    y = &x;
 
-//     p = malloc(sizeof(celula));
-//     a1 = malloc(sizeof(celula));
-//     a2 = malloc(sizeof(celula));
-//     a3 = malloc(sizeof(celula));
+    p = malloc(sizeof(celula));
 
+    empilha(p, 1);
+    empilha(p, 2);
+    empilha(p, 3);
+    empilha(p, 4);
 
-//     p->prox = a1;
-//     a1->dado = 1;
-//     a1->prox = a2;
-//     a2->dado = 2;
-//     a2->prox = a3;
-//     a3->dado = 3;
-//     a3->prox = NULL;
+    if (desempilha(p, y)){
+        for (p = p->prox; p != NULL; p = p->prox){
+            printf("%d\n", p->dado);
+        }
+    }
+    else 
+        printf("ERRO\n");
 
-    
-//     if (desempilha(p, y)){
-//         for (p = p->prox; p != NULL; p = p->prox){
-//             printf("%d\n", p->dado);
-//         }
-//     }
-//     else 
-//         printf("ERRO\n");
+    printf("valor y: %d\n", *y);
 
-//     printf("valor y: %d\n", *y);
-
-//     return 0;
-// }
+    return 0;
+}
