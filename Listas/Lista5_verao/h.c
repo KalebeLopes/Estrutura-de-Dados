@@ -12,12 +12,14 @@ int desenfileira (fila *f, int *y){
 
     *y = f->dados[f->p];
     f->p = (f->p + 1) % f->N ; 
+
+    return 1;
     
 }
 
-// int main(){
+int main(){
 
 
 
-//     return 0;
-// }
+    return 0;
+}

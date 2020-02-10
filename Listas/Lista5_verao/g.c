@@ -74,45 +74,45 @@ int enfileira (fila *f, int x){
     return 1;
 }
 
-// int main(){
+int main(){
 
-//     fila *f;
+    fila *f;
 
-//     f = malloc(sizeof(fila));
+    f = malloc(sizeof(fila));
 
-//     f->N = 5;
-//     f->dados = malloc(f->N * sizeof(int));
-//     if (f->dados == NULL)
-//         return 0;
-//     //f->p = f->u = 0;
-//     f->p = f->u = 2;
+    f->N = 5;
+    f->dados = malloc(f->N * sizeof(int));
+    if (f->dados == NULL)
+        return 0;
+    //f->p = f->u = 0;
+    f->p = f->u = 2;
 
-//     enfileira(f, 1);
-//     enfileira(f, 2);
-//     enfileira(f, 3);
-//     enfileira(f, 4);
-//     enfileira(f, 5);
+    enfileira(f, 1);
+    enfileira(f, 2);
+    enfileira(f, 3);
+    enfileira(f, 4);
+    enfileira(f, 5);
     
-//     if (f->p <= f->u){
-//         for (int i = f->p; i < f->u; i++)
-//             printf("%d ", f->dados[i]);
-//         printf("\n");
-//     }
+    if (f->p <= f->u){
+        for (int i = f->p; i < f->u; i++)
+            printf("%d ", f->dados[i]);
+        printf("\n");
+    }
 
     
-//     if (f->p > f->u){
-//         int i = f->p % f->N;;
+    if (f->p > f->u){
+        int i = f->p % f->N;;
 
-//         while (i != f->u){
+        while (i != f->u){
 
-//             i = i% f->N;
-//             printf("%d ",  f->dados[i]);    
-//             i++;
+            i = i% f->N;
+            printf("%d ",  f->dados[i]);    
+            i++;
             
-//         }
+        }
 
-//         printf("\n");
-//     }
+        printf("\n");
+    }
 
-//     return 0;
-// }
+    return 0;
+}
