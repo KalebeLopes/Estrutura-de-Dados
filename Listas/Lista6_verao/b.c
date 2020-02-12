@@ -69,7 +69,7 @@ int compara(char *nome, pilha *p, int qtd, char *desem){
 int main(){
 
     int qtd;
-    char nome[50], *desem, y;
+    char nome[50], *desem, y = 0;
     pilha *p;
 
     desem = &y;

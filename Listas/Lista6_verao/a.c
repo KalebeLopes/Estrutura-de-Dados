@@ -6,62 +6,55 @@ typedef struct celula{
     struct pilha *prox;    
 } celula;
 
-// int inicia(celula *pilha){
-//     if (pilha == NULL)
-//         return 0;
-   
-//     pilha->prox = NULL;
-//     return 1;
-// }
+int inicia(celula **pilha){
+    if (pilha == NULL)
+        return 0;
 
-int desempilhar(celula *pilha){
+    for (int i = 0; i < 31; i++){
+        pilha[i] = malloc(sizeof(celula));
+        pilha[i]->prox = NULL;
+    }
+    
+    //printf("INICIOU\n");
     return 1;
 }
 
-// int empilha(pilha *p, int tam, char l){
-//     if (p == NULL)
-//         return 0;
-   
-//     //printf("%d%c\n", tam, l);
-
-//     pilha *novo;
-   
-//     novo = malloc(sizeof(pilha));
-//     if (novo == NULL)
-//         return 0;
+int desempilha(celula *p){ 
     
-//     novo->prox = p->prox;
-//     p->prox = novo;
-//     novo->tam = tam;
-//     novo->l = l;
-   
-//     //printf("%d%c\n", novo->tam, novo->l);
+    if (p == NULL)
+        return 0;
 
-//     return 1;
-// }
+    celula *lixo = malloc(sizeof(celula));
 
-// int compara(pilha *p, int *count){
-//     if (p == NULL)
-//         return 0;
-   
-//     pilha *lixo, *i;
-//     lixo = malloc(sizeof(pilha));
-//     if (lixo == NULL)
-//         return 0;
-       
-   
-//     for (lixo = p->prox; lixo->prox != NULL; lixo = lixo->prox){
-//         printf("%d", p->tam);
-//         for (i = lixo->prox; lixo->tam != i->tam && i != NULL; i = i->prox);
-//             printf("%d\n", i->tam);
-//             if (lixo->l != i->l){
-//                 *count += 1;
-                
-//             }
-//     }
+    lixo = p->prox;
+    p->prox = lixo->prox;
 
-//     return 1;
-// }
+    free(lixo);
+
+    return 1;
+}
+
+int empilha(celula *p, char l){
+    if (p == NULL)
+        return 0;
+   
+    //printf("%d%c\n", tam, l);
+
+    celula *novo;
+    novo = malloc(sizeof(celula));
+
+    if (novo == NULL)
+        return 0;
+    
+    
+    novo->prox = p->prox;
+    p->prox = novo;
+    novo->l = l;
+   
+    //printf("%d%c\n", novo->tam, novo->l);
+
+    return 1;
+}
 
 int main(){
    
@@ -71,34 +64,31 @@ int main(){
 
     count = &x;
 
-    *pilha = malloc(31 * sizeof(celula));
-    pilha[1]->l = 'a';
-    printf("%c", pilha[1]->l);
-    //pilha[0]->prox = NULL;
-    
-    // while (scanf("%d%s", &tam, &l) != EOF){
-    //     if (pilha[tam]->prox == NULL){
-    //         empilhar(pilha[tam], l);
-    //     }
-    //     else {
-    //         celula *aux = sizeof(celula);
-    //         aux = pilha[tam]->prox;
+    inicia(pilha);
+
+    while (scanf("%d %c", &tam, &l) != EOF){
+        if (pilha[tam-30]->prox == NULL){
+            //printf("entrou ");
+            empilha(pilha[tam-30], l);
+            //printf("%c", a->l);
+        }
+
+        else {
+            celula *aux = malloc(sizeof(celula));
+            aux = pilha[tam-30]->prox;
             
-    //         if (aux->l != l){
-    //             *count += 1;
-    //             desempilhar(pilha[tam]);
-    //         }
-    //         else
-    //             empilha(pilha[tam], l);
-    //     }        
-    // }
-    
+            if (aux->l != l){
+                *count += 1;
+                desempilha(pilha[tam-30]);
+            }
 
-    // inicia(pilha[0]);
+            else
+                empilha(pilha[tam-30], l);
+        }        
+    }
 
-    // //compara(p, count);
-    // printf("%c\n", pilha[0]->l);
-   
+    printf("%d\n", *count);
+
     return 0;
 }
 
