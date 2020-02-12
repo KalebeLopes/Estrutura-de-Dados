@@ -25,6 +25,8 @@ int empilha (celula *p, int x){
     if (novo == NULL)
         return 0;
 
+    // O NO CABEÇA SEMPRE APONTA PRO TOPO
+
     novo->prox = p->prox;
     p->prox = novo;
     novo->dado = x;
