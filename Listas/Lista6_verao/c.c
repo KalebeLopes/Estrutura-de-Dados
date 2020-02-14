@@ -6,6 +6,11 @@ typedef struct pilha{
     struct pilha *prox;
 } pilha;
 
+typedef struct v{
+    int *dado;
+    int p, u, N;
+} v;
+
 
 int aloca(pilha *p, int qtd){
     if (p == NULL)
@@ -33,14 +38,25 @@ int empilha(pilha *p, int valor){
 
 }
 
-pilha *enfilera(pilha *p, int valor){
-    pilha *novo = malloc(sizeof(pilha));
+int enfilera(v *p, int valor){
+    // pilha *novo = malloc(sizeof(pilha));
     
-    novo->prox = p->prox;
-    p->prox = novo; 
-    p->dado = valor;
+    // novo->prox = p->prox;
+    // p->prox = novo; 
+    // p->dado = valor;
 
-    return p->prox;
+    // return p->prox;
+
+    if (p->u == p->N){
+        p->dado = realloc(p->dado, 2  *p->N * sizeof(int));
+        if(p->dado == NULL)
+            return 0;
+        p->N *= 2;
+    }
+
+    p->dado[p->u] = valor;
+    p->u ++;
+
 }
 
 int remover(pilha *p){
@@ -59,74 +75,83 @@ int remover(pilha *p){
 
 }
 
-int desen(pilha *p){
-    if (p == NULL)
+int desen(v *p){
+    if (p->p == p->u)
         return 0;
 
-    int valor;
-    pilha *lixo = malloc(sizeof(pilha));
-    pilha *i;
+    int x;
+    x = p->dado[p->p];
+    p->p ++;
 
-    for(i = p->prox; i->prox->prox != NULL; i = i->prox);
-
-    lixo = i->prox;
-    valor = lixo->dado;
-    i->prox = lixo->prox;
-
-    return valor;
+    return x;
 
 }
 
-int verifica(pilha *p1, pilha *p2 ,pilha *p3, int qtd){
-    if (p1 == NULL || p2 == NULL || p3 == NULL)
-        return 0;
+int verifica(pilha *p1, v *p2 ,pilha *p3, int qtd){
+    // if (p1 == NULL || p2 == NULL || p3 == NULL)
+    //     return 0;
 
     int qtd1 = qtd, qtd2 = 0;
     while (qtd1 >= 2){
 
-        if (qtd2 < qtd){
+        if (qtd2 < qtd/2){
             empilha(p3, remover(p1));
             enfilera(p2, remover(p1));
+            qtd2 ++;
+        }
+        else {
+            empilha(p3, desen(p2));
+            enfilera(p2, desen(p2));
         }
 
-        // empilha(p3, remover(p2));
-        // empilha(p2, remover(p2));
-
-
-
         qtd1 --;
-        qtd2 ++;
+        
     }
 
 
-    return 1;
+    return p2->p;
 }
 
 int main(){
 
-    int qtd;
-    pilha *p1, *p2, *p3;
+    int qtd, x;
+    v *p2;
+    pilha *p1, *p3, *p4;
 
     scanf("%d", &qtd);
 
     p1 = malloc(sizeof(pilha));
     p1->prox = NULL;
-    p2 = malloc(sizeof(pilha));
-    p2->prox = p2;
+    p2 = malloc(sizeof(v));
+    p2->N = qtd;
+    p2->dado = malloc(sizeof(int) * p2->N);
+    p2->u = p2->p = 0;
+
+    // p2->prox = p2;
     p3 = malloc(sizeof(pilha));
     p3->prox = NULL;
 
+    p4 = malloc(sizeof(pilha));
+    p4->prox = NULL;
+
     aloca(p1, qtd);
 
-    verifica(p1, p2, p3, qtd);
+    x = verifica(p1, p2, p3, qtd);
 
     pilha *i;
-    for (i = p2->prox; i != p2; i = i->prox){
+    for (i = p3->prox; i != NULL; i = i->prox){
         //printf("aq");
-        printf("%d ", i->dado);
+        empilha(p4, i->dado);
     }
 
-    printf("\n");
+    printf("Cartas descartadas: ");
+    for (i = p4->prox; i->prox != NULL; i = i->prox){
+        printf("%d, ", i->dado);
+        //empilha(p4, i->dado);
+    }
+    printf("%d\n", i->dado);
+
+    printf("Carta restante: %d\n", x);
 
     // for (i = p2->prox; i != NULL; i = i->prox){
     //     //printf("aq");
